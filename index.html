@@ -7,104 +7,95 @@
 <title>第4集《補習哥哥》分鏡表</title>
 <style>
   :root {
-    --bg: #100e0c; --bg2: #181512; --card: #1c1916; --card2: #231f1b;
-    --line: rgba(232, 214, 190, 0.12); --line2: rgba(232, 214, 190, 0.22);
-    --ink: #f6f0e8; --muted: #a3988c; --dim: #6f675e;
-    --amber: #e3a56a; --amber2: #f0d3ae; --local: #8eb6c6;
-    --ok: #9dc9ae; --danger: #d9897a; --shadow: 0 10px 30px rgba(0,0,0,.35);
-    --safe-t: env(safe-area-inset-top, 0px); --safe-b: env(safe-area-inset-bottom, 0px);
+    --bg:#100e0c; --bg2:#181512; --card:#1c1916; --card2:#231f1b;
+    --line:rgba(232,214,190,.12); --line2:rgba(232,214,190,.22);
+    --ink:#f6f0e8; --muted:#a3988c; --dim:#6f675e;
+    --amber:#e3a56a; --amber2:#f0d3ae; --local:#8eb6c6; --ok:#9dc9ae; --danger:#d9897a;
+    --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--bg); color: var(--ink); }
-  body { font-family: "PingFang HK", "PingFang TC", "Noto Sans CJK TC", sans-serif; min-height: 100dvh; }
-  button, input, textarea, select { font-family: inherit; color: inherit; }
-  button { cursor: pointer; }
-  .app { max-width: 1120px; margin: 0 auto; padding-bottom: calc(88px + var(--safe-b)); }
-  header.top {
-    position: sticky; top: 0; z-index: 20;
-    padding: calc(12px + var(--safe-t)) 16px 12px;
-    background: rgba(16,14,12,.94); backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--line);
-  }
-  .kicker { display: flex; justify-content: space-between; color: var(--dim); font-size: 11px; letter-spacing: .16em; }
-  h1 { margin: 4px 0 2px; font-size: 28px; font-weight: 640; letter-spacing: -.03em; }
-  h1 span { color: var(--amber2); font-weight: 560; }
-  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .pill { border: 1px solid var(--line2); border-radius: 999px; padding: 4px 9px; font-size: 12px; color: var(--amber2); }
-  .pill.ghost { color: var(--muted); }
-  .clock { margin-top: 12px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
-  .total-num { font-variant-numeric: tabular-nums; font-size: 42px; line-height: .9; font-weight: 640; }
-  .total-num em { font-style: normal; font-size: 16px; color: var(--muted); margin-left: 4px; font-weight: 500; }
-  .total-sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
-  .total-sub.warn { color: var(--amber); } .total-sub.ok { color: var(--ok); }
-  .bar { height: 3px; border-radius: 99px; background: #2a2622; margin-top: 10px; overflow: hidden; }
-  .bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #b98552, #e3a56a); }
-  .locks { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.35; }
-  .locks b { color: var(--ink); }
-  .side { padding: 12px 16px 0; }
-  .lockbox, .negbox { padding: 12px; border: 1px solid var(--line); background: var(--bg2); border-radius: 16px; margin-bottom: 10px; }
-  .lockbox h2, .negbox h2 { margin: 0 0 8px; font-size: 12px; letter-spacing: .12em; color: var(--dim); }
-  .who { display: grid; grid-template-columns: 52px 1fr; gap: 8px; margin-top: 8px; }
-  .avatar { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: #2a241c; color: var(--amber2); font-weight: 700; }
-  .avatar.m { background: #1d2428; color: var(--local); }
-  textarea, input[type="text"], input[type="number"] {
-    width: 100%; background: rgba(0,0,0,.22); border: 1px solid transparent; border-radius: 12px;
-    padding: 9px 10px; font-size: 16px; line-height: 1.45; outline: none;
-  }
-  textarea { resize: vertical; }
-  textarea:focus, input:focus { border-color: rgba(227,165,106,.55); }
-  .list { padding: 8px 16px 0; display: flex; flex-direction: column; gap: 12px; }
-  article.shot { background: linear-gradient(180deg, var(--card), var(--card2)); border: 1px solid var(--line); border-radius: 20px; padding: 14px; position: relative; overflow: hidden; }
-  article.shot::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--amber); }
-  article.shot.local::before { background: var(--local); }
-  article.shot.locked { border-color: rgba(157,201,174,.35); }
-  .shot-head, .head-right, .foot, .tools, .dock-inner { display: flex; gap: 8px; align-items: center; }
-  .shot-head { justify-content: space-between; }
-  .sid { font-size: 22px; font-weight: 700; width: 88px; background: transparent; border: 0; padding: 0; }
-  .sec { width: 72px; text-align: right; }
-  .model { min-width: 84px; }
-  article.shot.local .model { color: var(--local); }
-  article.shot:not(.local) .model { color: var(--amber2); }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-  label.field, .grid2 label, .negbox label { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
-  label span { font-size: 11px; letter-spacing: .12em; color: var(--dim); font-weight: 650; }
-  .foot { justify-content: space-between; margin-top: 12px; }
-  .status, .copy, .tools button, .dock button {
-    border: 1px solid var(--line2); background: #221e1a; color: var(--ink); border-radius: 12px; padding: 10px 12px; font-size: 14px; font-weight: 650;
-  }
-  .status { flex: 1; display: flex; justify-content: space-between; text-align: left; }
-  .status i { font-style: normal; color: var(--dim); font-size: 11px; letter-spacing: .08em; }
-  .status.s0 { color: var(--muted); } .status.s1 { color: var(--amber); } .status.s2 { color: var(--ok); }
-  .copy { background: transparent; color: var(--amber2); }
-  .del { border: 0; background: transparent; color: var(--dim); padding: 10px 6px; }
-  .del.arm { color: var(--danger); }
-  .tools { flex-wrap: wrap; padding: 14px 16px 0; }
-  .tools button { background: transparent; color: var(--muted); font-weight: 560; }
-  .note { color: var(--dim); font-size: 12px; line-height: 1.5; padding: 10px 18px 0; }
-  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 16px calc(10px + var(--safe-b)); background: linear-gradient(180deg, transparent, rgba(16,14,12,.94) 28%); }
-  .dock-inner { max-width: 1120px; margin: 0 auto; }
-  .dock .add { flex: 1.4; background: #e3a56a; color: #23180f; border-color: transparent; }
-  .toast { position: fixed; left: 50%; bottom: calc(78px + var(--safe-b)); transform: translateX(-50%); background: #f6f0e8; color: #1b1612; border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 700; opacity: 0; pointer-events: none; transition: .2s; z-index: 40; }
-  .toast.on { opacity: 1; }
-  @media (min-width: 960px) {
-    .app { display: grid; grid-template-columns: 320px 1fr; align-items: start; }
-    header.top { grid-column: 1; position: sticky; }
-    .side { grid-column: 1; }
-    .list, .tools, .note { grid-column: 2; }
-    .list { grid-row: 1 / span 3; padding-top: 16px; }
-    .dock-inner { max-width: 1120px; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--ink); }
+  body { font-family:"PingFang HK","PingFang TC","Noto Sans CJK TC",sans-serif; min-height:100dvh; }
+  button, input, textarea { font-family:inherit; color:inherit; }
+  button { cursor:pointer; }
+  .app { max-width:1120px; margin:0 auto; padding-bottom:calc(88px + var(--safe-b)); }
+  header.top { position:sticky; top:0; z-index:20; padding:calc(12px + var(--safe-t)) 16px 12px; background:rgba(16,14,12,.94); backdrop-filter:blur(16px); border-bottom:1px solid var(--line); }
+  .kicker { display:flex; justify-content:space-between; color:var(--dim); font-size:11px; letter-spacing:.16em; }
+  h1 { margin:4px 0 2px; font-size:28px; font-weight:640; letter-spacing:-.03em; }
+  h1 span { color:var(--amber2); font-weight:560; }
+  .meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .pill { border:1px solid var(--line2); border-radius:999px; padding:4px 9px; font-size:12px; color:var(--amber2); }
+  .pill.ghost { color:var(--muted); }
+  .clock { margin-top:12px; display:grid; grid-template-columns:1fr auto; gap:10px; align-items:end; }
+  .total-num { font-variant-numeric:tabular-nums; font-size:42px; line-height:.9; font-weight:640; }
+  .total-num em { font-style:normal; font-size:16px; color:var(--muted); margin-left:4px; font-weight:500; }
+  .total-sub { color:var(--muted); font-size:12px; margin-top:4px; }
+  .total-sub.warn { color:var(--amber); } .total-sub.ok { color:var(--ok); }
+  .bar { height:3px; border-radius:99px; background:#2a2622; margin-top:10px; overflow:hidden; }
+  .bar > i { display:block; height:100%; width:0; background:linear-gradient(90deg,#b98552,#e3a56a); }
+  .locks { text-align:right; color:var(--muted); font-size:12px; line-height:1.35; }
+  .locks b { color:var(--ink); }
+  .side { padding:12px 16px 0; }
+  .lockbox, .negbox { padding:12px; border:1px solid var(--line); background:var(--bg2); border-radius:16px; margin-bottom:10px; }
+  .lockbox h2, .negbox h2 { margin:0 0 8px; font-size:12px; letter-spacing:.12em; color:var(--dim); }
+  .who { display:grid; grid-template-columns:52px 1fr; gap:8px; margin-top:8px; }
+  .avatar { width:52px; height:52px; border-radius:14px; display:grid; place-items:center; background:#2a241c; color:var(--amber2); font-weight:700; }
+  .avatar.m { background:#1d2428; color:var(--local); }
+  textarea, input[type="text"], input[type="number"] { width:100%; background:rgba(0,0,0,.22); border:1px solid transparent; border-radius:12px; padding:9px 10px; font-size:16px; line-height:1.45; outline:none; }
+  textarea { resize:vertical; }
+  textarea:focus, input:focus { border-color:rgba(227,165,106,.55); }
+  .list { padding:8px 16px 0; display:flex; flex-direction:column; gap:12px; }
+  article.shot { background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid var(--line); border-radius:20px; padding:14px; position:relative; overflow:hidden; }
+  article.shot::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--amber); }
+  article.shot.local::before { background:var(--local); }
+  article.shot.locked { border-color:rgba(157,201,174,.35); }
+  .shot-head, .head-right, .foot, .tools, .dock-inner, .copies { display:flex; gap:8px; align-items:center; }
+  .shot-head { justify-content:space-between; }
+  .sid { font-size:22px; font-weight:700; width:88px; background:transparent; border:0; padding:0; }
+  .sec { width:72px; text-align:right; }
+  .model { min-width:84px; }
+  article.shot.local .model { color:var(--local); }
+  article.shot:not(.local) .model { color:var(--amber2); }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+  label.field, .grid2 label, .negbox label { display:flex; flex-direction:column; gap:4px; margin-top:10px; }
+  label span { font-size:11px; letter-spacing:.12em; color:var(--dim); font-weight:650; }
+  .copies { flex-wrap:wrap; margin-top:10px; }
+  .foot { justify-content:space-between; margin-top:12px; }
+  .status, .copy, .tools button, .dock button { border:1px solid var(--line2); background:#221e1a; color:var(--ink); border-radius:12px; padding:10px 12px; font-size:14px; font-weight:650; }
+  .status { flex:1; display:flex; justify-content:space-between; text-align:left; }
+  .status i { font-style:normal; color:var(--dim); font-size:11px; letter-spacing:.08em; }
+  .status.s0 { color:var(--muted); } .status.s1 { color:var(--amber); } .status.s2 { color:var(--ok); }
+  .copy { background:transparent; color:var(--amber2); }
+  .copy.z { color:#f0d3ae; } .copy.h { color:#d7c4a3; } .copy.v { color:var(--local); }
+  .del { border:0; background:transparent; color:var(--dim); padding:10px 6px; }
+  .del.arm { color:var(--danger); }
+  .tools { flex-wrap:wrap; padding:14px 16px 0; }
+  .tools button { background:transparent; color:var(--muted); font-weight:560; }
+  .note { color:var(--dim); font-size:12px; line-height:1.5; padding:10px 18px 0; }
+  .dock { position:fixed; left:0; right:0; bottom:0; z-index:30; padding:10px 16px calc(10px + var(--safe-b)); background:linear-gradient(180deg,transparent,rgba(16,14,12,.94) 28%); }
+  .dock-inner { max-width:1120px; margin:0 auto; }
+  .dock .add { flex:1.4; background:#e3a56a; color:#23180f; border-color:transparent; }
+  .toast { position:fixed; left:50%; bottom:calc(78px + var(--safe-b)); transform:translateX(-50%); background:#f6f0e8; color:#1b1612; border-radius:999px; padding:8px 14px; font-size:13px; font-weight:700; opacity:0; pointer-events:none; transition:.2s; z-index:40; }
+  .toast.on { opacity:1; }
+  @media (min-width:960px) {
+    .app { display:grid; grid-template-columns:320px 1fr; align-items:start; }
+    header.top, .side { grid-column:1; }
+    header.top { position:sticky; }
+    .list, .tools, .note { grid-column:2; }
+    .list { grid-row:1 / span 3; padding-top:16px; }
   }
 </style>
 </head>
 <body>
 <div class="app">
   <header class="top">
-    <div class="kicker"><span>EP 04 · v2</span><span>呢個瀏覽器</span></div>
+    <div class="kicker"><span>EP 04 · v3</span><span>呢個瀏覽器</span></div>
     <h1>補習哥哥 <span>9:16</span></h1>
     <div class="meta">
       <span class="pill">目標 35 秒</span>
-      <span class="pill ghost">S1–S4 LTX</span>
-      <span class="pill ghost">S5–S7 本地</span>
+      <span class="pill ghost">文生圖 Z-Image</span>
+      <span class="pill ghost">圖生圖英雄幀</span>
+      <span class="pill ghost">圖生片</span>
     </div>
     <div class="clock">
       <div>
@@ -118,41 +109,42 @@
   <div class="side">
     <section class="lockbox">
       <h2>角色鎖 · 21–25 歲</h2>
-      <div class="who"><div class="avatar">薇 23</div><textarea id="girl" rows="3">小薇，23歲，自然妝，高卷馬尾，C cup，無紋身，瘦，白皮有紋理。白襯衫解頂鈕，住宅暖燈。</textarea></div>
-      <div class="who"><div class="avatar m">哥 24</div><textarea id="guy" rows="3">補習哥哥，24歲，短髮，白襯衫袖捲起，瘦高，無紋身。夜歸，背包放低先坐埋去。</textarea></div>
+      <div class="who"><div class="avatar">薇 23</div><textarea id="girl" rows="3">小薇，23歲華人女性，自然妝，高卷馬尾，C cup，無紋身，瘦，白皮有紋理。白襯衫解頂鈕。</textarea></div>
+      <div class="who"><div class="avatar m">哥 24</div><textarea id="guy" rows="3">補習哥哥，24歲華人男性，短髮，白襯衫袖捲起，瘦高，無紋身。</textarea></div>
     </section>
     <section class="negbox">
-      <h2>負面詞 · 複製提示詞時一併附上</h2>
+      <h2>負面詞</h2>
       <label><span>NEGATIVE</span><textarea id="neg" rows="3">lowres, blurry, extra fingers, deformed face, text, watermark, child, teen, underage</textarea></label>
     </section>
   </div>
   <div class="list" id="list"></div>
   <div class="tools">
-    <button type="button" id="export">複製全部分鏡</button>
+    <button type="button" id="export">複製全部圖生片</button>
     <button type="button" id="json">下載 JSON</button>
     <button type="button" id="import">匯入 JSON</button>
     <button type="button" id="reset">恢復預填</button>
     <input id="file" type="file" accept="application/json,.json" hidden />
   </div>
-  <p class="note">v2。每張卡可以單獨複製出圖提示詞，貼去 ComfyUI。資料只留喺呢個瀏覽器。手機同電腦唔會同步。重新整理如果未見 v2，撳 Ctrl+F5。</p>
+  <p class="note">v3。每鏡三條：Z-Image 文生圖、圖生圖英雄幀、圖生片。圖生片係原本嗰條。複製會附上角色鎖同負面詞。Ctrl+F5 先見到 v3。</p>
 </div>
 <div class="dock"><div class="dock-inner"><button type="button" class="add" id="add">加鏡</button><button type="button" id="top">回頂</button></div></div>
 <div class="toast" id="toast"></div>
-<datalist id="models"><option value="LTX"></option><option value="本地"></option><option value="Wan 2.2"></option><option value="手動"></option></datalist>
+<datalist id="models"><option value="LTX"></option><option value="本地"></option><option value="Wan 2.2"></option></datalist>
 <script type="application/json" id="defaults">[
-  {"id":"s1","no":"S1","sec":5,"size":"中景","move":"緩推","visual":"夜，香港住宅客廳，暖黃檯燈。23歲小薇坐在木書枱前，白襯衫解頂鈕、高卷馬尾，筆記攤開。24歲補習哥哥推門進來，放下背包，走向她。9:16，手機實拍，皮膚有紋理。","prompt":"","line":"小薇：今晚溫邊章？\n哥哥：由你卡住嗰頁開始。","sfx":"門鎖、腳步、椅腳輕響","status":0,"model":"LTX"},
-  {"id":"s2","no":"S2","sec":5,"size":"中近景","move":"固定微晃","visual":"兩人並肩坐低。哥哥指住筆記某一行，小薇側頭望佢，唔望紙。檯燈側光，書頁反光，背景書架虛化。","prompt":"","line":"哥哥：呢條你再講一次。\n小薇：你坐近咗。","sfx":"筆尖、紙聲","status":0,"model":"LTX"},
-  {"id":"s3","no":"S3","sec":5,"size":"手部特寫","move":"緩推","visual":"哥哥隻手覆住小薇握筆嘅手。女手指微微收緊。白襯衫袖口、暖光、皮膚紋理清楚。鏡頭只見手、腕、筆記一角。","prompt":"","line":"哥哥：放鬆。唔係考試。","sfx":"衣料摩擦、輕呼吸","status":0,"model":"LTX"},
-  {"id":"s4","no":"S4","sec":5,"size":"近景雙人","move":"輕搖","visual":"小薇轉過頭，兩人臉距好近，鼻尖幾乎碰到。她望住哥哥嘴巴，哥哥喉結動一下。暖側光，書牆虛化。9:16 上半身。","prompt":"","line":"小薇：我專心緊。\n哥哥：專心啲。","sfx":"時鐘、呼吸","status":0,"model":"LTX"},
-  {"id":"s5","no":"S5","sec":5,"size":"特寫","move":"手持微推","visual":"本地出。哥哥托住小薇下頜吻落去。小薇手抓住佢襯衫前襟，馬尾鬆少少。暖燈打喺兩張面上，仍然 23 / 24 歲成年人。","prompt":"","line":"小薇（氣音）：哥哥……","sfx":"吻、衣料","status":0,"model":"本地"},
-  {"id":"s6","no":"S6","sec":6,"size":"中近景","move":"緩降","visual":"本地出。小薇跨坐到哥哥大腿上，筆記滑到地上。裙擺上移，仍著內衫。哥哥手扣住她的腰，椅輕響。暖燈，住宅夜。","prompt":"","line":"哥哥：筆記先放低。\n小薇：聽日再抄。","sfx":"書本落地、椅吱、呼吸","status":0,"model":"本地"},
-  {"id":"s7","no":"S7","sec":4,"size":"近景","move":"固定","visual":"本地出，英雄幀。小薇伏喺哥哥肩，襯衫略亂，筆記散在地上，暖燈。她側臉望向鏡頭，眼神未散。停喺呢格做封面。","prompt":"","line":"小薇：聽日再溫。","sfx":"環境靜、輕呼吸","status":0,"model":"本地"}
+  {"id":"s1","no":"S1","sec":5,"size":"中景","move":"緩推","model":"LTX","status":0,"visual":"夜，香港住宅客廳，暖黃檯燈。23歲小薇坐在木書枱前，白襯衫解頂鈕、高卷馬尾，筆記攤開。24歲補習哥哥推門進來，放下背包，走向她。9:16，手機實拍，皮膚有紋理。","z":"寫實手機相，9:16。香港住宅客廳夜景，暖黃檯燈。23歲小薇坐在木書枱前，白襯衫解頂鈕，高卷馬尾，筆記攤開。24歲補習哥哥剛推門進來，背包放在地上，走向書枱。兩人都是成年人，皮膚有紋理，無紋身。","hero":"保留構圖同兩人身份。小薇23歲高卷馬尾、自然妝、白襯衫。補習哥哥24歲短髮、袖捲起。暖檯燈，書頁反光，手機實拍質感，面部清晰，手指正常。","line":"小薇：今晚溫邊章？\n哥哥：由你卡住嗰頁開始。","sfx":"門鎖、腳步、椅腳輕響"},
+  {"id":"s2","no":"S2","sec":5,"size":"中近景","move":"固定微晃","model":"LTX","status":0,"visual":"兩人並肩坐低。哥哥指住筆記某一行，小薇側頭望佢，唔望紙。檯燈側光，書頁反光，背景書架虛化。","z":"寫實9:16中近景。小薇同補習哥哥並肩坐在書枱。哥哥食指指住筆記一行，小薇側頭望住佢而唔望紙。暖側光，書頁反光，書架虛化。兩人23歲同24歲，無紋身。","hero":"用上一張臉做參考。保持並肩坐、指筆記、她望人唔望紙。鎖小薇高卷馬尾同哥哥短髮，暖燈，面部一致，手指只有五隻。","line":"哥哥：呢條你再講一次。\n小薇：你坐近咗。","sfx":"筆尖、紙聲"},
+  {"id":"s3","no":"S3","sec":5,"size":"手部特寫","move":"緩推","model":"LTX","status":0,"visual":"哥哥隻手覆住小薇握筆嘅手。女手指微微收緊。白襯衫袖口、暖光、皮膚紋理清楚。鏡頭只見手、腕、筆記一角。","z":"寫實特寫，9:16。一隻男性手覆在女性握筆的手上，女手指微收。白襯衫袖口，暖檯燈，皮膚紋理清楚，筆記一角。只見手同腕，手指正常。","hero":"保留手部構圖。男性手覆住女性握筆的手，五指清楚，無多指。暖光，袖口，筆記一角，皮膚紋理。","line":"哥哥：放鬆。唔係考試。","sfx":"衣料摩擦、輕呼吸"},
+  {"id":"s4","no":"S4","sec":5,"size":"近景雙人","move":"輕搖","model":"LTX","status":0,"visual":"小薇轉過頭，兩人臉距好近，鼻尖幾乎碰到。她望住哥哥嘴巴，哥哥喉結動一下。暖側光，書牆虛化。9:16 上半身。","z":"寫實9:16近景。小薇轉頭，同24歲補習哥哥臉距很近，鼻尖幾乎碰到。她望住他的嘴，他喉結動了一下。暖側光，書牆虛化，上半身。成年人，面部清晰。","hero":"鎖兩張臉。保持鼻尖幾乎碰到、她望住他嘴巴。小薇高卷馬尾自然妝，哥哥短髮白襯衫。暖側光，書牆虛化，不要變形。","line":"小薇：我專心緊。\n哥哥：專心啲。","sfx":"時鐘、呼吸"},
+  {"id":"s5","no":"S5","sec":5,"size":"特寫","move":"手持微推","model":"本地","status":0,"visual":"本地出。哥哥托住小薇下頜吻落去。小薇手抓住佢襯衫前襟，馬尾鬆少少。暖燈打喺兩張面上，仍然 23 / 24 歲成年人。","z":"寫實特寫，9:16。24歲男人托住23歲女人下頜吻下去。她手抓住他襯衫前襟，高卷馬尾微鬆。暖燈打在兩張臉上。成年人，無紋身。","hero":"鎖臉後再修。保持托下頜同吻，她抓襯衫前襟。面部一致，暖燈，馬尾微鬆，手指正常。","line":"小薇（氣音）：哥哥……","sfx":"吻、衣料"},
+  {"id":"s6","no":"S6","sec":6,"size":"中近景","move":"緩降","model":"本地","status":0,"visual":"本地出。小薇跨坐到哥哥大腿上，筆記滑到地上。裙擺上移，仍著內衫。哥哥手扣住她的腰，椅輕響。暖燈，住宅夜。","z":"寫實9:16中近景。23歲小薇跨坐在24歲補習哥哥大腿上，筆記滑到地上。裙擺上移，仍穿內衫。他手扣住她的腰。暖燈，住宅夜，成年人。","hero":"鎖兩人樣貌。保持跨坐、筆記落地、裙擺上移但仍有內衫、他扣腰。暖燈，面部同手部正常。","line":"哥哥：筆記先放低。\n小薇：聽日再抄。","sfx":"書本落地、椅吱、呼吸"},
+  {"id":"s7","no":"S7","sec":4,"size":"近景","move":"固定","model":"本地","status":0,"visual":"本地出，英雄幀。小薇伏喺哥哥肩，襯衫略亂，筆記散在地上，暖燈。她側臉望向鏡頭，眼神未散。停喺呢格做封面。","z":"寫實9:16近景封面。小薇伏在補習哥哥肩上，白襯衫略亂，筆記散在地上，暖燈。她側臉望向鏡頭，眼神未散。23歲同24歲，成年人。","hero":"封面英雄幀。鎖小薇側臉同哥哥肩線。襯衫略亂，筆記散地，暖燈，她望鏡頭。面部清晰，可做靜幀。","line":"小薇：聽日再溫。","sfx":"環境靜、輕呼吸"}
 ]</script>
 <script>
 const KEY = "ep4-tutor-storyboard-v1";
 const META = "ep4-tutor-meta-v2";
 const STATUSES = ["未做", "出圖中", "已鎖定"];
 const defaults = JSON.parse(document.getElementById("defaults").textContent);
+const byId = Object.fromEntries(defaults.map(s => [s.id, s]));
 const list = document.getElementById("list");
 let shots = load();
 let arm = null;
@@ -165,15 +157,14 @@ function load() {
   try {
     const data = JSON.parse(localStorage.getItem(KEY) || "null");
     if (!Array.isArray(data) || !data.length) return structuredClone(defaults);
-    return data.map(s => ({ prompt: "", ...s }));
+    return data.map(s => {
+      const d = byId[s.id] || {};
+      return { z: d.z || "", hero: d.hero || "", prompt: "", ...s, z: s.z || d.z || "", hero: s.hero || d.hero || "" };
+    });
   } catch (e) { return structuredClone(defaults); }
 }
 function loadMeta() {
-  const base = {
-    girl: document.getElementById("girl").value,
-    guy: document.getElementById("guy").value,
-    neg: document.getElementById("neg").value
-  };
+  const base = { girl: document.getElementById("girl").value, guy: document.getElementById("guy").value, neg: document.getElementById("neg").value };
   try { return { ...base, ...JSON.parse(localStorage.getItem(META) || "{}") }; }
   catch (e) { return base; }
 }
@@ -202,14 +193,12 @@ function renderTotals() {
   document.getElementById("locks").innerHTML = "英雄幀<br><b>" + locked + " / " + shots.length + " 已鎖定</b>";
   document.getElementById("bar").style.width = Math.min(100, (sum / 35) * 100) + "%";
 }
-function promptOf(s) {
-  const body = (s.prompt || s.visual || "").trim();
+function block(title, body, s) {
   return [
-    s.no + " · " + s.sec + "秒 · " + s.size + " · " + s.move + " · " + s.model + " · 9:16",
+    title + " · " + s.no + " · " + s.sec + "秒 · " + s.size + " · " + s.move + " · " + s.model + " · 9:16",
     "角色：" + document.getElementById("girl").value.replace(/\s+/g, " "),
     "角色：" + document.getElementById("guy").value.replace(/\s+/g, " "),
-    "畫面：" + body,
-    "對白：" + (s.line || "—").replace(/\n/g, " / "),
+    body,
     "NEGATIVE: " + document.getElementById("neg").value.replace(/\s+/g, " ")
   ].join("\n");
 }
@@ -222,6 +211,15 @@ function field(shot, label, key, rows) {
   ta.addEventListener("input", () => { shot[key] = ta.value; save(); });
   lab.appendChild(ta);
   return lab;
+}
+function copyBtn(cls, text, payload, ok) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "copy " + cls; b.textContent = text;
+  b.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(payload()); toast(ok); }
+    catch (e) { toast("複製失敗"); }
+  });
+  return b;
 }
 function render() {
   list.innerHTML = "";
@@ -241,8 +239,7 @@ function render() {
     const model = document.createElement("input");
     model.className = "model"; model.value = shot.model; model.setAttribute("list", "models");
     model.addEventListener("input", () => { shot.model = model.value.trim() || "本地"; card.classList.toggle("local", shot.model !== "LTX"); save(); });
-    right.append(sec, model);
-    head.append(no, right);
+    right.append(sec, model); head.append(no, right);
     const grid = document.createElement("div");
     grid.className = "grid2";
     [["景別","size"],["運鏡","move"]].forEach(([label, key]) => {
@@ -253,22 +250,19 @@ function render() {
       input.addEventListener("input", () => { shot[key] = input.value; save(); });
       lab.appendChild(input); grid.appendChild(lab);
     });
-    const visual = field(shot, "畫面", "visual", 3);
-    const prompt = field(shot, "出圖提示詞 · 空就用畫面", "prompt", 2);
-    const line = field(shot, "對白", "line", 2);
-    const sfx = field(shot, "音效", "sfx", 1);
+    const copies = document.createElement("div");
+    copies.className = "copies";
+    copies.append(
+      copyBtn("z", "複製文生圖", () => block("Z-Image 文生圖", shot.z || shot.visual || "", shot), "已複製文生圖"),
+      copyBtn("h", "複製英雄幀", () => block("圖生圖英雄幀", shot.hero || shot.visual || "", shot), "已複製英雄幀"),
+      copyBtn("v", "複製圖生片", () => block("圖生片", shot.visual || "", shot) + "\n對白：" + (shot.line || "—").replace(/\n/g, " / "), "已複製圖生片")
+    );
     const foot = document.createElement("div");
     foot.className = "foot";
     const status = document.createElement("button");
     status.type = "button"; status.className = "status s" + shot.status;
     status.innerHTML = "<i>英雄幀</i><span>" + STATUSES[shot.status] + "</span>";
     status.addEventListener("click", () => { shot.status = (shot.status + 1) % 3; save(); render(); });
-    const copy = document.createElement("button");
-    copy.type = "button"; copy.className = "copy"; copy.textContent = "複製呢鏡";
-    copy.addEventListener("click", async () => {
-      try { await navigator.clipboard.writeText(promptOf(shot)); toast("已複製 " + shot.no); }
-      catch (e) { toast("複製失敗"); }
-    });
     const del = document.createElement("button");
     del.type = "button"; del.className = "del" + (arm === shot.id ? " arm" : "");
     del.textContent = arm === shot.id ? "確認刪" : "刪鏡";
@@ -276,14 +270,14 @@ function render() {
       if (arm !== shot.id) { arm = shot.id; render(); return; }
       shots = shots.filter(s => s.id !== shot.id); arm = null; save(); render(); toast("已刪 " + shot.no);
     });
-    foot.append(status, copy, del);
-    card.append(head, grid, visual, prompt, line, sfx, foot);
+    foot.append(status, del);
+    card.append(head, grid, field(shot, "1. Z-Image 文生圖", "z", 3), field(shot, "2. 圖生圖 · 英雄幀", "hero", 2), field(shot, "3. 圖生片", "visual", 3), field(shot, "對白", "line", 2), field(shot, "音效", "sfx", 1), copies, foot);
     list.appendChild(card);
   });
   renderTotals();
 }
 document.getElementById("add").addEventListener("click", () => {
-  shots.push({ id: "s" + Date.now(), no: "S" + (shots.length + 1), sec: 4, size: "中近景", move: "固定", visual: "", prompt: "", line: "", sfx: "", status: 0, model: "本地" });
+  shots.push({ id: "s" + Date.now(), no: "S" + (shots.length + 1), sec: 4, size: "中近景", move: "固定", visual: "", z: "", hero: "", line: "", sfx: "", status: 0, model: "本地" });
   arm = null; save(); render(); list.lastElementChild.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 document.getElementById("top").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
@@ -292,8 +286,8 @@ document.getElementById("reset").addEventListener("click", () => {
   shots = structuredClone(defaults); arm = null; save(); render(); toast("已恢復預填");
 });
 document.getElementById("export").addEventListener("click", async () => {
-  const text = shots.map(promptOf).join("\n\n");
-  try { await navigator.clipboard.writeText(text); toast("已複製全部"); }
+  const text = shots.map(s => block("圖生片", s.visual || "", s)).join("\n\n");
+  try { await navigator.clipboard.writeText(text); toast("已複製全部圖生片"); }
   catch (e) { toast("複製失敗"); }
 });
 document.getElementById("json").addEventListener("click", () => {
@@ -307,7 +301,7 @@ document.getElementById("file").addEventListener("change", async (e) => {
     const data = JSON.parse(await file.text());
     const next = Array.isArray(data) ? data : data.shots;
     if (!Array.isArray(next) || !next.length) throw new Error("empty");
-    shots = next.map(s => ({ prompt: "", status: 0, model: "本地", ...s }));
+    shots = next.map(s => ({ z: "", hero: "", status: 0, model: "本地", ...s }));
     if (data.meta) {
       if (data.meta.girl) document.getElementById("girl").value = data.meta.girl;
       if (data.meta.guy) document.getElementById("guy").value = data.meta.guy;
@@ -318,6 +312,7 @@ document.getElementById("file").addEventListener("change", async (e) => {
   } catch (err) { toast("JSON 讀唔到"); }
   e.target.value = "";
 });
+save();
 render();
 </script>
 </body>
